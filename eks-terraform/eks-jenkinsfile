@@ -3,10 +3,10 @@ pipeline {
     parameters {
         string(name: 'ACTION', defaultValue: 'apply', description: 'Terraform action: apply or destroy')    
     }
-    stages {
+       stages {
         stage('Checkout from Git'){
             steps{
-                echo 'git checkout'
+                git branch: 'main', url: 'https://github.com/shubhamojas/fpjt.git'
             }
         }
         stage('Terraform version'){
