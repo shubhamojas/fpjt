@@ -110,7 +110,7 @@ provider "aws" {
     role       = aws_iam_role.worker.name
   }
  
-  # data source 
+ # data source 
  data "aws_vpc" "main" {
   tags = {
     Name = "Jumphost-vpc"  # Specify the name of your existing VPC
@@ -121,7 +121,7 @@ data "aws_subnet" "subnet-1" {
  vpc_id = data.aws_vpc.main.id
  filter {
     name = "tag:Name"
-    values = ["MyPublicSubnet01"]
+    values = ["Jumphost-subnet1"]
  }
 }
 
@@ -129,14 +129,14 @@ data "aws_subnet" "subnet-2" {
  vpc_id = data.aws_vpc.main.id
  filter {
     name = "tag:Name"
-    values = ["MyPublicSubnet02"]
+    values = ["Jumphost-subnet2"]
  }
 }
 data "aws_security_group" "selected" {
   vpc_id = data.aws_vpc.main.id
   filter {
     name = "tag:Name"
-    values = ["devops-project-veera"]
+    values = ["Jumphost-sg""]
  }
 }
 
@@ -169,7 +169,7 @@ data "aws_security_group" "selected" {
     instance_types  = ["t2.small"]
 
     remote_access {
-      ec2_ssh_key               = "provisioner"
+      ec2_ssh_key               = "dockerdevops"
       source_security_group_ids = [data.aws_security_group.selected.id]
     }
 
@@ -193,3 +193,5 @@ data "aws_security_group" "selected" {
       aws_iam_role_policy_attachment.AmazonEC2ContainerRegistryReadOnly,
     ]
   }
+  
+ 
