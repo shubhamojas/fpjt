@@ -117,7 +117,7 @@ provider "aws" {
   }
 }
 
-data "aws_subnet" "Jumphost-subnet" {
+data "aws_subnet" "subnet-1" {
  vpc_id = data.aws_vpc.main.id
  filter {
     name = "tag:Name"
@@ -125,7 +125,7 @@ data "aws_subnet" "Jumphost-subnet" {
  }
 }
 
-data "aws_subnet" "Jumphost-subnet" {
+data "aws_subnet" "subnet-2" {
  vpc_id = data.aws_vpc.main.id
  filter {
     name = "tag:Name"
