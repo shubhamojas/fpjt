@@ -7,8 +7,8 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "cloudcore007"
-    key    = "terraform.tfstate"
+    bucket = "cloudcore411"
+    key    = "dockerdevops"
     region = "ap-south-1"
   }
 
