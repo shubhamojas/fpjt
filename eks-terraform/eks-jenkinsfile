@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-east-1"  # Ensure the region matches your AWS resources
+  region = "ap-south-1"  # Ensure the region matches your AWS resources
 }
 
 # Create IAM role for EKS Cluster
