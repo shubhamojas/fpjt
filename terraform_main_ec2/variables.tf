@@ -16,11 +16,17 @@ variable "igw-name" {
   default = "Jumphost-igw"
 }
 
-variable "subnet-name" {
-  description = "Subnet Name for our Jumphost server"
-  type = string
-  default = "Jumphost-subnet"
-}
+#variable "subnet1" {
+#  description = "Subnet Name for our Jumphost server"
+#  type = string
+#  default = "Jumphost-subnet1"
+#}
+
+#variable "subnet" {
+#  description = "Subnet Name for our Jumphost server"
+#  type = string
+#  default = "Jumphost-subnet2"
+#}
 
 variable "rt-name" {
   description = "Route Table Name for our Jumphost server"
@@ -38,13 +44,13 @@ variable "sg-name" {
 variable "iam-role" {
   description = "IAM Role for the Jumphost Server"
   type = string
-  default = "Jumphost-iam-role"
+  default = "Jumphost-iam-role1"
 }
 
 variable "ami_id" {
   description = "AMI ID for the EC2 instance"
   type        = string
-  default     = "ami-0c7217cdde317cfec" // Replace with the latest AMI ID for your region
+  default     = "ami-0fd05997b4dff7aac" // Replace with the latest AMI ID for your region
 }
 
 variable "instance_type" {
