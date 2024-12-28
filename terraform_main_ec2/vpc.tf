@@ -14,14 +14,25 @@ resource "aws_internet_gateway" "igw" {
   }
 }
 
-resource "aws_subnet" "public-subnet" {
+resource "aws_subnet" "Jumphost-subnet1" {
   vpc_id                  = aws_vpc.vpc.id
   cidr_block              = "10.0.1.0/24"
   availability_zone       = "ap-south-1a"
   map_public_ip_on_launch = true
 
   tags = {
-    Name = var.subnet-name
+    Name = "Jumphost-subnet1"
+  }
+}
+
+resource "aws_subnet" "Jumphost-subnet2" {
+  vpc_id                  = aws_vpc.vpc.id
+  cidr_block              = "10.0.2.0/24"
+  availability_zone       = "ap-south-1b"
+  map_public_ip_on_launch = true
+
+  tags = {
+    Name = "Jumphost-subnet2"
   }
 }
 
@@ -39,7 +50,12 @@ resource "aws_route_table" "rt" {
 
 resource "aws_route_table_association" "rt-association" {
   route_table_id = aws_route_table.rt.id
-  subnet_id      = aws_subnet.public-subnet.id
+  subnet_id      = aws_subnet.Jumphost-subnet1.id
+}
+
+resource "aws_route_table_association" "rt-association2" {
+  route_table_id = aws_route_table.rt.id
+  subnet_id      = aws_subnet.Jumphost-subnet2.id
 }
 
 resource "aws_security_group" "security-group" {
